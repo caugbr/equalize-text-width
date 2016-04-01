@@ -1,6 +1,6 @@
 # Equalize Text Width
 
-This is a plugin interesting for designers. The idea is quite simple: get some element with more then one line of text and make all lines fill the full width of the element, changing the font size. 
+This is an interesting plugin for designers. The idea is quite simple: get some element with more then one line of text and make all lines fill the full width of the element, changing the font size. 
 
 ### Sample code:
 
