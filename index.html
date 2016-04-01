@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery.equalizeTextWidth()</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.equalize-text-width.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.sample p, .sample h1, .sample h2, .sample h3').each(function(index, element) {
+      var tname = this.tagName.toLowerCase(), 
+					lnk = $('<a />', {class: 'etw-link', href: 'javascript://', 'data-selector': tname}).text('$('+tname+').equalizeTextWidth();').click(function() {
+						var sel = $(this).attr('data-selector');
+						$('.sample '+sel).equalizeTextWidth();
+					}), 
+					lnk2 = $('<a />', {class: 'etw-link', href: 'javascript://', 'data-selector': tname}).text('$('+tname+').equalizeTextWidth(\'text\');').click(function() {
+						var sel = $(this).attr('data-selector');
+						$('.sample '+sel).equalizeTextWidth('text');
+					}), 
+					lnk3 = $('<a />', {class: 'etw-link', href: 'javascript://', 'data-selector': tname}).text('$('+tname+').equalizeTextWidth(\'text\', true);').click(function() {
+						var sel = $(this).attr('data-selector');
+						$('.sample '+sel).equalizeTextWidth('text', true);
+					}), 
+					lnk4 = $('<a />', {class: 'etw-link', href: 'javascript://', 'data-selector': tname}).text('$('+tname+').equalizeTextWidth(\'undo\');').click(function() {
+						var sel = $(this).attr('data-selector');
+						$('.sample '+sel).equalizeTextWidth('undo');
+					});
+		  $(this).before(lnk);
+			if(index == 0) $(this).before('<span> | </span>').before(lnk2).before('<span> | </span>').before(lnk3);
+			$(this).before('<span> | </span>').before(lnk4);
+    });
+	});
+</script>
+<style type="text/css">
+body { font-family:Verdana, Geneva, sans-serif; }
+.content h1 { font-size:44px; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; color: darkblue; margin:10px auto 5px; }
+.content h2 { font-size:28px; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; color: darkblue; margin:0px auto 20px; }
+.content { padding: 10px 20px; }
+
+.sample p, .sample h1, .sample h2, .sample h3 { padding:20px; margin:30px; width:400px; background-color:#EAEAEA; }
+.sample h1 { font-size:80px; width:680px; color:blue; }
+.sample h2 { font-size:60px; width:500px; color:red; }
+.sample h3 { font-size:40px; width:540px; color:green; }
+
+.etw-link {
+	font-size:12px;
+	color:#000;
+	text-decoration:none;
+}
+
+.etw-line {
+	font-size:inherit;
+	transition: all .2s ease-in 0;
+	-moz-transition: all .2s ease-in 0;
+	-webkit-transition: all .2s ease-in 0;
+}
+</style>
+</head>
+
+<body>
+<div class="content">
+  <h1>equalizeTextWidth()</h1>
+  <h2>iguala a largura do texto mudando o tamanho da fonte</h2>
+  <p>
+  Este é um plugin jQuery direcionado basicamente a designers e sua idéia é muito simples: <em>igualar a largura do texto em um elemento mudando o tamanho da fonte linha a linha, até que todas as linhas de texto tenham o tamanho mais próximo possível da largura do elemento que contém o texto</em>.</p>
+  <p>Se enviarmos o parâmetro '<code>text</code>', caso haja uma palavra que sozinha seja maior que a linha, a largura levada em consideração será a da palavra, caso contrário ela será reduzida para caber no elemento. Há um segundo parâmetro boleano que diz se, caso o  primeiro parâmetro seja '<code>text</code>', se o elemento deve crescer para acompanhar o tamanho do texto (apenas o primeiro exemplo pode mostrar isso tudo). Usando esse parâmetro, as quebras de linha originais podem não ser seguidas, pois o elemento será renderizado numa largura diferente.</p>
+  <p>Usada com o parâmetro '<code>undo</code>', o sistema desfaz o que foi feito.</p>
+  <p>Veja na prática:</p>
+</div>
+<div class="sample">
+  <h1>equalizeTextWidth equaliza o tamanho do texto num elemento</h1>
+  <h2>modificando o valor CSS fontSize</h2>
+  <h3>As quebras de linha originais são respeitadas, mas a altura do elemento deve aumentar</h3>
+</div>
+</body>
+</html>
